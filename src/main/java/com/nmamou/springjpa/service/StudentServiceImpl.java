@@ -1,5 +1,7 @@
 package com.nmamou.springjpa.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student getStudent(Long id) {
-        return null;
+        return studentRepository.findById(id).get();
     }
 
     @Override
@@ -26,12 +28,16 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudent(Long id) {        
+    public void deleteStudent(Long id) { 
+        studentRepository.deleteById(id);       
     }
 
     @Override
     public List<Student> getStudents() {
-        return null;
+        List<Student> students = new ArrayList<>();
+        studentRepository.findAll().forEach(students::add);
+        System.out.println(students);
+        return students;
     }
 
 
