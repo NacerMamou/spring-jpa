@@ -2,11 +2,23 @@ package com.nmamou.springjpa.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.nmamou.springjpa.entity.Grade;
+import com.nmamou.springjpa.entity.Student;
+import com.nmamou.springjpa.repository.GradeRepository;
+import com.nmamou.springjpa.repository.StudentRepository;
 
-
-
+@Service
 public class GradeServiceImpl implements GradeService {    
+    
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    GradeRepository gradeRepository;
+    
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
         return null;
@@ -14,7 +26,9 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
-        return null;
+        Student student = studentRepository.findById(studentId).get();
+        grade.setStudent(student);
+        return gradeRepository.save(grade);
     }
 
     @Override

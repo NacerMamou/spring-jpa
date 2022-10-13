@@ -1,5 +1,11 @@
 package com.nmamou.springjpa.repository;
 
-public class GradeRepository {
-  
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.nmamou.springjpa.entity.Grade;
+
+
+
+public interface GradeRepository extends CrudRepository<Grade, Long> {  
 }
